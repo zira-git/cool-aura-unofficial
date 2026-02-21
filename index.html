@@ -13,7 +13,19 @@
   <meta charset="UTF-8">
 </head>
 <body>
-  <div id="topGap" style="height: 10vh;"></div>
+  <div id="topGap" style="height: 10vh;"><button id="settings" onclick="document.getElementById('settingsMenu').style.display = 'block'">⋮</button></div>
+  <div id="settingsMenu">
+    <span>Settings</span>
+      <button style="background-color: transparent; border: none;" onclick="document.getElementById('settingsMenu').style.display = 'none'"> ❌</button>    
+    <div class="bar"></div>
+      <strong>Browser:</strong>
+      <br>
+      <button class="configs" onclick="localStorage.setItem('browser','chrome')">Chrome</button>
+      <button class="configs" onclick="localStorage.setItem('browser','duckduckgo')">DuckDuckGo</button>
+      <br>
+      <br>
+      <div class="bar"></div>
+  </div>
   <div id="title_container">
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <h1 id="mainTitle">Cool Aura</h1>
@@ -24,9 +36,12 @@
     </div>
     <br><br><br>
     <div id="searchBox">
-    <input type="text" id="search" placeholder="Search or type a URL">
+    <input type="text" autocomplete="off"" id="search" placeholder="Search or type a URL">
     <button id="searchexecuter" onclick="search()">⌕</button>
     </div>
+    <!--
+    <button id="customization_tools">🖌customize</button>
+  -->
   <script src="lib.js"></script>
 </body>
 </html>

@@ -115,3 +115,71 @@ body {
     color: white;
     text-shadow: 1px 1px red, -1px -1px blue;
 }
+
+#settings {
+    display: grid;
+    justify-items: end;
+    font-size: 30px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color:white;
+}
+
+#settings:hover {
+    background-color: rgb(23, 23, 23);
+    cursor: pointer;
+}
+
+#settingsMenu {
+  z-index: 1000;
+  width: 8vw;
+  height: 20vh;
+  padding: 10px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(37, 37, 37);
+  border-radius: 10px;
+  position: absolute;
+  font-family: 'Tiktok Sans';
+  display: none;
+}
+
+.bar {
+    width: 7vw;
+    height: .1vh;
+    background-color: rgb(104, 104, 104); 
+}
+
+.configs {
+    width: fit-content;
+    height: fit-content;
+    font-family: 'Audiowide'
+}
+
+button {
+    cursor: pointer
+}
+
+/*
+
+#customization_tools {
+    position:fixed;
+    margin: 10px;
+    bottom:0;
+    right:0;
+    background-color: rgb(25, 25, 25);
+    border-radius: 30px;
+    border: none;
+    color: rgb(255, 255, 255);
+    width: fit-content;
+    height: fit-content;
+    font-size: 20px;
+    text-align: center;
+}
+
+#customization_tools:hover {
+    background-color: rgb(39, 39, 39);
+}
+
+*/
