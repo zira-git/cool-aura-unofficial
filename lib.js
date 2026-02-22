@@ -42,6 +42,9 @@ function search() {
 
     else if(localStorage.getItem('searchengine') === 'bliptext') {
         window.location.href = `https://bliptext.com/search?q=${url}`
+
+    else if(localStorage.getItem('searchengine') === 'bing') {
+        window.location.href = `https://www.bing.com/search?q=${url}`
     }
 }
 
