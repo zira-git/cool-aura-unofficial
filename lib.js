@@ -1,5 +1,5 @@
 if(localStorage.getItem('browser') === null ) {
-    localStorage.setItem('searchengine','google')
+    localStorage.setItem('searchengine','duckduckgo')
 }
 
 function search() {
@@ -24,6 +24,15 @@ function search() {
 
     else if(localStorage.getItem('searchengine') === 'vyntr') {
         window.location.href = `https://vyntr.com/search?q=${url}`
+
+    else if(localStorage.getItem('searchengine') === 'ecosia') {
+        window.location.href = `https://www.ecosia.org/search?method=index&q=${url}`
+
+    else if(localStorage.getItem('searchengine') === 'brave') {
+        window.location.href = `https://search.brave.com/search?q=${url}`
+
+    else if(localStorage.getItem('searchengine') === 'yandex' {
+        window.location.href = `https://yandex.com/search/?text=${url}`
     }
 }
 
