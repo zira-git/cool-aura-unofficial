@@ -73,13 +73,16 @@ color: greenyellow
 }
 
 #subtitle_text {
-color: rgb(170, 51, 106);
+animation-name: search_color;
+animation-duration: 3s;
+animation-iteration-count: infinite;
 font-size: 40px;
 font-family: "Tiktok Sans";
 font-weight: 100;
 }
 
 #search {
+text-align: center;
 width: 30vw;
 height: 2.3vh;
 font-family: 'Tiktok Sans';
@@ -184,4 +187,3 @@ button {
  }
 
  */
-
