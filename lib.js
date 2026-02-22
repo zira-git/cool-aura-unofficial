@@ -24,4 +24,4 @@ function search() {
     }
 }
 
-console.log(localStorage.getItem('browser'))
+console.log(localStorage.getItem('searchengine'))
