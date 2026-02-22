@@ -28,10 +28,6 @@ function search() {
         window.location.href = `https://vyntr.com/search?q=${url}`
     }
 
-    else if(localStorage.getItem('searchengine') === 'ecosia') {
-        window.location.href = `https://www.ecosia.org/search?method=index&q=${url}`
-    }
-
     else if(localStorage.getItem('searchengine') === 'brave') {
         window.location.href = `https://search.brave.com/search?q=${url}`
     }
