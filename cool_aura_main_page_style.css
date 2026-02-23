@@ -23,7 +23,7 @@ height: 10vh;
 text-shadow:
 6px 6px blue,
 -6px -6px rgb(255, 0, 0);
-font-family:  audiowide;
+font-family: audiowide;
 font-size: min(7vw, 100px);
 animation-name: opening_animation;
 animation-duration: 2s;
