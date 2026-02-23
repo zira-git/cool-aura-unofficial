@@ -5,4 +5,4 @@
 ![](./cooler_aura_swagshot.png?raw=true "Swagshot")
 
 ### WARNING: These are unofficial updates of Cool Aura.
-- v0.5.3
+- v0.5.5
