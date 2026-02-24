@@ -12,7 +12,7 @@ function search() {
     }
 
     let url = encodeURIComponent(input); // Encodes it to let you use stuff like + , & and more in your query
-        
+    
     // Search engines
     else if(localStorage.getItem('searchengine') === 'google') {
         window.location.href = `https://google.com/search?q=${url}&safe=active&ssui=on`;
