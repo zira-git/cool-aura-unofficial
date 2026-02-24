@@ -11,7 +11,7 @@ function search() {
         document.getElementById('search').setAttribute('placeholder','The search bar cannot be empty.')
     }
 
-    let url = encodeURIComponent(input); // Encodes it to let you use stuff like + , & and more in your query
+    let encoded = encodeURIComponent(url); // Encodes it to let you use stuff like + , & and more in your query
     
     // Search engines
     else if(localStorage.getItem('searchengine') === 'google') {
