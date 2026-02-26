@@ -3,51 +3,73 @@
 <head>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:opsz,wght@12..36,300..900&display=swap" rel="stylesheet">
+
+  <link rel="dns-prefetch" href="https://google.com">
+  <link rel="dns-prefetch" href="https://duckduckgo.com">
+  <link rel="dns-prefetch" href="https://www.startpage.com">
+  <link rel="dns-prefetch" href="https://search.brave.com">
+  <link rel="dns-prefetch" href="https://yandex.com">
+  <link rel="dns-prefetch" href="https://bing.com">
+  <link rel="dns-prefetch" href="https://vyntr.com">
+  <link rel="dns-prefetch" href="https://bliptext.com">
+
   <link rel="stylesheet" href="cool_aura_main_page_style.css">
   <link rel="icon" type="image/png" href="coolauralogo.png">
-  <title>Cool Aura</title>
+
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Cool Aura</title>
 </head>
 <body>
-  <div id="topGap" style="height: 10vh;"><button id="settings" onclick="document.getElementById('settingsMenu').style.display = 'block'">⋮</button></div>
+
+  <div id="topGap" style="height: 10vh;">
+    <button id="settings" onclick="document.getElementById('settingsMenu').style.display = 'block'">⋮</button>
+  </div>
+
   <div id="settingsMenu">
     <span>Settings</span>
-      <button style="background-color: transparent; border: none;" onclick="document.getElementById('settingsMenu').style.display = 'none'"> ❌</button>
+    <button style="background-color: transparent; border: none;" onclick="document.getElementById('settingsMenu').style.display = 'none'"> ❌</button>
     <div class="bar"></div>
-      <strong>Search Engine:</strong>
-      <br>
-      <button class="configs" onclick="localStorage.setItem('searchengine','google')">Google</button>
-      <button class="configs" onclick="localStorage.setItem('searchengine','bing')">Bing</button>
-      <button class="configs" onclick="localStorage.setItem('searchengine','vyntr')">Vyntr</button>
-      <button class="configs" onclick="localStorage.setItem('searchengine','bliptext')">Bliptext</button>
-      <button class="configs" onclick="localStorage.setItem('searchengine','yandex')">Yandex</button>
-      <button class="configs" onclick="localStorage.setItem('searchengine','duckduckgo')">DuckDuckGo</button>
-      <button class="configs" onclick="localStorage.setItem('searchengine','startpage')">Startpage</button>
-      <button class="configs" onclick="localStorage.setItem('searchengine','brave')">Brave</button>
-      <br>
-      <br>
-      <div class="bar"></div>
+
+    <strong>Search Engine:</strong>
+    <br>
+
+    <button class="configs" onclick="localStorage.setItem('searchengine','google')">Google</button>
+    <button class="configs" onclick="localStorage.setItem('searchengine','bing')">Bing</button>
+    <button class="configs" onclick="localStorage.setItem('searchengine','vyntr')">Vyntr</button>
+    <button class="configs" onclick="localStorage.setItem('searchengine','bliptext')">Bliptext</button>
+    <button class="configs" onclick="localStorage.setItem('searchengine','yandex')">Yandex</button>
+    <button class="configs" onclick="localStorage.setItem('searchengine','duckduckgo')">DuckDuckGo</button>
+    <button class="configs" onclick="localStorage.setItem('searchengine','startpage')">Startpage</button>
+    <button class="configs" onclick="localStorage.setItem('searchengine','brave')">Brave</button>
+
+    <br><br>
+    <div class="bar"></div>
   </div>
+
   <div id="title_container">
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <h1 id="mainTitle">Cool Aura</h1>
-    </div>
-    <br><br><br><br>
-    <div>
+  </div>
+
+  <br><br><br><br>
+
+  <div>
     <h1 id="subtitle_text">The homepage with maximum aura.</h1>
-    </div>
-    <br><br><br>
-    <div id="searchBox">
+  </div>
+
+  <br><br><br>
+
+  <div id="searchBox">
     <input type="text" autocomplete="off" id="search" placeholder="Search or type a URL">
     <button id="searchexecuter" onclick="search()">⌕</button>
-    </div>
-    <!--
-    <button id="customization_tools">🖌customize</button>
-  -->
-  <script src="lib.js"></script>
+  </div>
+
+  <script src="lib.js" defer></script>
+
 </body>
 </html>
