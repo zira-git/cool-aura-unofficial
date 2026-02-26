@@ -6,15 +6,12 @@ body {
 
   display: flex;
   flex-direction: column;
-  align-items: center;
 
   background-color: rgb(12, 12, 12);
-  color: rgb(17, 17, 17);
+  color: white;
 
   font-family: Arial, sans-serif;
   font-weight: 100;
-
-  text-align: center;
 }
 
 #title_container {
@@ -25,15 +22,14 @@ body {
   font-family: "Audiowide", sans-serif;
   font-size: min(7vw, 100px);
 
-  color: black;
-
   text-shadow:
     6px 6px blue,
     -6px -6px red;
 
   animation: opening_animation 2s ease;
 
-  margin-top: 80px;
+  margin-top: 40px;
+  margin-bottom: auto;
 }
 
 #title_container:hover {
@@ -81,19 +77,19 @@ body {
   font-size: 40px;
   font-family: "Tiktok Sans", sans-serif;
   font-weight: 100;
-
   margin: 0;
 }
 
 .bottom-container {
-  margin-top: auto;
-  margin-bottom: 60px;
+  width: 100%;
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
   gap: 20px;
+
+  margin-bottom: 60px;
 }
 
 #searchBox {
@@ -124,6 +120,8 @@ body {
   background: transparent;
 
   animation: search_color 3s infinite linear;
+
+  color: inherit;
 }
 
 #searchexecuter {
@@ -146,6 +144,15 @@ body {
   33%  { color: blue; }
   66%  { color: rgb(0, 255, 34); }
   100% { color: red; }
+}
+
+#topGap {
+  width: 100%;
+
+  display: flex;
+  justify-content: flex-start;
+
+  padding: 20px;
 }
 
 #settings {
