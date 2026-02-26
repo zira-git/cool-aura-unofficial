@@ -1,57 +1,53 @@
-if(localStorage.getItem('searchengine') === null ) { // If no search engine is selected it will default to DDG
-    localStorage.setItem('searchengine','duckduckgo') // Sets search engine to DDG
+// If no search engine is selected it will default to DDG
+if(localStorage.getItem('searchengine') === null ) {
+    // Sets search engine to DDG
+    localStorage.setItem('searchengine','duckduckgo')
 }
+
+// Cache engine once for speed
+function getEngine() {
+    return localStorage.getItem('searchengine')
+}
+
 // Search function
 function search() {
-    let url = document.getElementById("search").value
+    let url = document.getElementById("search").value.trim()
+
     if(url.includes('.')) {
         console.log(url)
         window.location.href = `https://${url}`
         return;
-    } else if(url === "") { // If the URL is empty it warns that it can't be empty
+    } 
+    else if(url === "") { 
+        // If the URL is empty it warns that it can't be empty
         document.getElementById('search').setAttribute('placeholder','The search bar cannot be empty.')
         return;
     }
 
-     url = encodeURIComponent(url) // Encodes it to let you use stuff like + , & and more in your query              
-    
-    // Search engines
-    if(localStorage.getItem('searchengine') === 'google') {
-        window.location.href = `https://google.com/search?q=${url}&safe=active&ssui=on`;
+    url = encodeURIComponent(url) 
+    let engine = getEngine()
+
+    // Search engines (faster lookup instead of long else-if chain)
+    const engines = {
+        google: `https://google.com/search?q=${url}&safe=active&ssui=on`,
+        duckduckgo: `https://duckduckgo.com/?q=${url}&ia=web`,
+        startpage: `https://www.startpage.com/sp/search?query=${url}`,
+        vyntr: `https://vyntr.com/search?q=${url}`,
+        brave: `https://search.brave.com/search?q=${url}`,
+        yandex: `https://yandex.com/search/?text=${url}`,
+        bliptext: `https://bliptext.com/search?q=${url}`,
+        bing: `https://www.bing.com/search?q=${url}`
     }
 
-    else if(localStorage.getItem('searchengine') === 'duckduckgo') {
-        window.location.href = `https://duckduckgo.com/?q=${url}&ia=web`;
-    }
-
-    else if(localStorage.getItem('searchengine') === 'startpage') {
-        window.location.href = `https://www.startpage.com/sp/search?query=${url}`;
-    }
-
-    else if(localStorage.getItem('searchengine') === 'vyntr') {
-        window.location.href = `https://vyntr.com/search?q=${url}`;
-    }
-
-    else if(localStorage.getItem('searchengine') === 'brave') {
-        window.location.href = `https://search.brave.com/search?q=${url}`;
-    }
-
-    else if(localStorage.getItem('searchengine') === 'yandex') {
-        window.location.href = `https://yandex.com/search/?text=${url}`;
-    }
-
-    else if(localStorage.getItem('searchengine') === 'bliptext') {
-        window.location.href = `https://bliptext.com/search?q=${url}`;
-    }
-
-    else if(localStorage.getItem('searchengine') === 'bing') {
-        window.location.href = `https://www.bing.com/search?q=${url}`;
+    if(engines[engine]) {
+        window.location.href = engines[engine]
     }
 }
 
-console.log(localStorage.getItem('searchengine')) // Logs your current search engine
+console.log(getEngine()) // Logs your current search engine
 
-window.addEventListener("DOMContentLoaded", () => { // Enter key listener
+window.addEventListener("DOMContentLoaded", () => { 
+    // Enter key listener
     document.getElementById("search").addEventListener("keydown", function(event) {
         if (event.key === "Enter") {
             search();
