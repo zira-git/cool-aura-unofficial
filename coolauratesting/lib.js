@@ -6,12 +6,26 @@ function getEngine() {
     return localStorage.getItem('searchengine')
 }
 
+// Cache DOM once
 const searchInput = document.getElementById("search")
 const searchButton = document.getElementById("searchexecuter")
 const settingsBtn = document.getElementById("settings")
 const settingsMenu = document.getElementById("settingsMenu")
 const closeSettings = document.getElementById("closeSettings")
 
+// Cache engines once
+const engines = {
+    google: "https://google.com/search?q=",
+    duckduckgo: "https://duckduckgo.com/?q=",
+    startpage: "https://www.startpage.com/sp/search?query=",
+    vyntr: "https://vyntr.com/search?q=",
+    brave: "https://search.brave.com/search?q=",
+    yandex: "https://yandex.com/search/?text=",
+    bliptext: "https://bliptext.com/search?q=",
+    bing: "https://www.bing.com/search?q="
+}
+
+// Settings toggle
 settingsBtn?.addEventListener("click", () => {
     settingsMenu.style.display =
         settingsMenu.style.display === "block" ? "none" : "block"
@@ -21,7 +35,20 @@ closeSettings?.addEventListener("click", () => {
     settingsMenu.style.display = "none"
 })
 
-function search() {
+// Debounce logic
+let debounceTimer = null
+
+function debounce(fn, delay) {
+    return function (...args) {
+        if (debounceTimer) return
+        fn.apply(this, args)
+        debounceTimer = setTimeout(() => {
+            debounceTimer = null
+        }, delay)
+    }
+}
+
+function performSearch() {
 
     const raw = searchInput.value.trim()
 
@@ -38,21 +65,13 @@ function search() {
     const query = encodeURIComponent(raw)
     const engine = getEngine()
 
-    const engines = {
-        google: `https://google.com/search?q=${query}&safe=active&ssui=on`,
-        duckduckgo: `https://duckduckgo.com/?q=${query}&ia=web`,
-        startpage: `https://www.startpage.com/sp/search?query=${query}`,
-        vyntr: `https://vyntr.com/search?q=${query}`,
-        brave: `https://search.brave.com/search?q=${query}`,
-        yandex: `https://yandex.com/search/?text=${query}`,
-        bliptext: `https://bliptext.com/search?q=${query}`,
-        bing: `https://www.bing.com/search?q=${query}`
-    }
-
     if (engines[engine]) {
-        window.location.href = engines[engine]
+        window.location.href = engines[engine] + query + "&safe=active&ssui=on"
     }
 }
+
+// Debounce protection with 300ms knockout
+const search = debounce(performSearch, 300)
 
 searchButton?.addEventListener("click", search)
 
