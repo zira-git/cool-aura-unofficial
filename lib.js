@@ -1,56 +1,82 @@
-// If no search engine is selected it will default to DDG
-if(localStorage.getItem('searchengine') === null ) {
-    // Sets search engine to DDG
+if (!localStorage.getItem('searchengine')) {
     localStorage.setItem('searchengine','duckduckgo')
 }
 
-// Cache engine once for speed
 function getEngine() {
     return localStorage.getItem('searchengine')
 }
 
-// Search function
-function search() {
-    let url = document.getElementById("search").value.trim()
+// Cache DOM once
+const searchInput = document.getElementById("search")
+const searchButton = document.getElementById("searchexecuter")
+const settingsBtn = document.getElementById("settings")
+const settingsMenu = document.getElementById("settingsMenu")
+const closeSettings = document.getElementById("closeSettings")
 
-    if(url.includes('.')) {
-        console.log(url)
-        window.location.href = `https://${url}`
-        return;
-    } 
-    else if(url === "") { 
-        // If the URL is empty it warns that it can't be empty
-        document.getElementById('search').setAttribute('placeholder','The search bar cannot be empty.')
-        return;
-    }
+// Cache engines once
+const engines = {
+    google: "https://google.com/search?q=",
+    duckduckgo: "https://duckduckgo.com/?q=",
+    startpage: "https://www.startpage.com/sp/search?query=",
+    vyntr: "https://vyntr.com/search?q=",
+    brave: "https://search.brave.com/search?q=",
+    yandex: "https://yandex.com/search/?text=",
+    bliptext: "https://bliptext.com/search?q=",
+    bing: "https://www.bing.com/search?q="
+}
 
-    url = encodeURIComponent(url) 
-    let engine = getEngine()
+// Settings toggle
+settingsBtn?.addEventListener("click", () => {
+    settingsMenu.style.display =
+        settingsMenu.style.display === "block" ? "none" : "block"
+})
 
-    // Search engines (faster lookup instead of long else-if chain)
-    const engines = {
-        google: `https://google.com/search?q=${url}&safe=active&ssui=on`,
-        duckduckgo: `https://duckduckgo.com/?q=${url}&ia=web`,
-        startpage: `https://www.startpage.com/sp/search?query=${url}`,
-        vyntr: `https://vyntr.com/search?q=${url}`,
-        brave: `https://search.brave.com/search?q=${url}`,
-        yandex: `https://yandex.com/search/?text=${url}`,
-        bliptext: `https://bliptext.com/search?q=${url}`,
-        bing: `https://www.bing.com/search?q=${url}`
-    }
+closeSettings?.addEventListener("click", () => {
+    settingsMenu.style.display = "none"
+})
 
-    if(engines[engine]) {
-        window.location.href = engines[engine]
+// Debounce logic
+let debounceTimer = null
+
+function debounce(fn, delay) {
+    return function (...args) {
+        if (debounceTimer) return
+        fn.apply(this, args)
+        debounceTimer = setTimeout(() => {
+            debounceTimer = null
+        }, delay)
     }
 }
 
-console.log(getEngine()) // Logs your current search engine
+function performSearch() {
 
-window.addEventListener("DOMContentLoaded", () => { 
-    // Enter key listener
-    document.getElementById("search").addEventListener("keydown", function(event) {
-        if (event.key === "Enter") {
-            search();
-        }
-    });
-});
+    const raw = searchInput.value.trim()
+
+    if (!raw) {
+        searchInput.placeholder = "The search bar cannot be empty."
+        return
+    }
+
+    if (raw.includes('.')) {
+        window.location.href = "https://" + raw
+        return
+    }
+
+    const query = encodeURIComponent(raw)
+    const engine = getEngine()
+
+    if (engines[engine]) {
+        window.location.href = engines[engine] + query + "&safe=active&ssui=on"
+    }
+}
+
+// Debounce protection with 300ms knockout
+const search = debounce(performSearch, 300)
+
+searchButton?.addEventListener("click", search)
+
+searchInput?.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") search()
+})
+
+console.log(getEngine())
