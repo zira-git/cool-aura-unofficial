@@ -1,76 +1,63 @@
-// Default search engine
-if (!localStorage.searchengine) {
-  localStorage.searchengine = "duckduckgo"
+if (!localStorage.getItem('searchengine')) {
+    localStorage.setItem('searchengine','duckduckgo')
 }
 
-// Cache DOM once
+function getEngine() {
+    return localStorage.getItem('searchengine')
+}
+
 const searchInput = document.getElementById("search")
 const searchButton = document.getElementById("searchexecuter")
 const settingsBtn = document.getElementById("settings")
-const closeSettingsBtn = document.getElementById("closeSettings")
 const settingsMenu = document.getElementById("settingsMenu")
+const closeSettings = document.getElementById("closeSettings")
 
-// Search engine map
+settingsBtn?.addEventListener("click", () => {
+    settingsMenu.style.display =
+        settingsMenu.style.display === "block" ? "none" : "block"
+})
+
+closeSettings?.addEventListener("click", () => {
+    settingsMenu.style.display = "none"
+})
+
 function search() {
 
-  let url = searchInput.value.trim()
-  if (!url) {
-    searchInput.placeholder = "The search bar cannot be empty."
-    return
-  }
+    const raw = searchInput.value.trim()
 
-  if (url.includes(".")) {
-    window.location.href = "https://" + url
-    return
-  }
+    if (!raw) {
+        searchInput.placeholder = "The search bar cannot be empty."
+        return
+    }
 
-  const query = encodeURIComponent(url)
-  const engine = localStorage.searchengine
+    if (raw.includes('.')) {
+        window.location.href = "https://" + raw
+        return
+    }
 
-  const engines = {
-    google: `https://google.com/search?q=${query}&safe=active&ssui=on`,
-    duckduckgo: `https://duckduckgo.com/?q=${query}&ia=web`,
-    startpage: `https://www.startpage.com/sp/search?query=${query}`,
-    vyntr: `https://vyntr.com/search?q=${query}`,
-    brave: `https://search.brave.com/search?q=${query}`,
-    yandex: `https://yandex.com/search/?text=${query}`,
-    bliptext: `https://bliptext.com/search?q=${query}`,
-    bing: `https://www.bing.com/search?q=${query}`
-  }
+    const query = encodeURIComponent(raw)
+    const engine = getEngine()
 
-  if (engines[engine]) {
-    window.location.href = engines[engine]
-  }
+    const engines = {
+        google: `https://google.com/search?q=${query}&safe=active&ssui=on`,
+        duckduckgo: `https://duckduckgo.com/?q=${query}&ia=web`,
+        startpage: `https://www.startpage.com/sp/search?query=${query}`,
+        vyntr: `https://vyntr.com/search?q=${query}`,
+        brave: `https://search.brave.com/search?q=${query}`,
+        yandex: `https://yandex.com/search/?text=${query}`,
+        bliptext: `https://bliptext.com/search?q=${query}`,
+        bing: `https://www.bing.com/search?q=${query}`
+    }
+
+    if (engines[engine]) {
+        window.location.href = engines[engine]
+    }
 }
 
-// Settings toggle
-settingsBtn?.addEventListener("click", () => {
-  settingsMenu.style.display =
-    settingsMenu.style.display === "block" ? "none" : "block"
-})
-
-closeSettingsBtn?.addEventListener("click", () => {
-  settingsMenu.style.display = "none"
-})
-
-// Engine buttons
-document.querySelectorAll(".engine-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    localStorage.searchengine = btn.dataset.engine
-  })
-})
-
-// Search button
 searchButton?.addEventListener("click", search)
 
-// Enter key support
 searchInput?.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    search()
-  }
+    if (e.key === "Enter") search()
 })
 
-// Auto focus
-document.addEventListener("DOMContentLoaded", () => {
-  searchInput?.focus()
-})
+console.log(getEngine())
