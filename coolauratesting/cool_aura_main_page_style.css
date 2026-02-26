@@ -1,0 +1,198 @@
+body {
+    align-self: center;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    color: rgb(17, 17, 17);
+    background-color: rgb(12, 12, 12);
+    font-family: Arial;
+    font-weight: 100;
+}
+
+#title_container {
+justify-content: center;
+align-self: center;
+align-content: center;
+align-items: center;
+text-align: center;
+color: rgb(0, 0, 0);
+background-color: transparent;
+font-family: Arial;
+font-weight: 100;
+height: 10vh;
+text-shadow:
+6px 6px blue,
+-6px -6px rgb(255, 0, 0);
+font-family: audiowide;
+font-size: min(7vw, 100px);
+animation-name: opening_animation;
+animation-duration: 2s;
+transition: color 2s;
+display: flex;
+margin: 0;
+padding: 0.5px;
+min-height: 10px;
+position: sticky;
+}
+
+@keyframes opening_animation {
+    0% {
+        text-shadow:
+        6px 6px red,
+        -6px -6px blue;
+        color: black}
+
+        25% {
+            text-shadow:
+            6px 6px orange,
+            -6px -6px rgb(0, 255, 255);
+            color: rgb(81, 0, 0);
+        }
+
+        50% {
+            text-shadow: 6px 6px yellow,
+            -6px -6px rgb(0, 255, 0);
+            color: rgb(0, 0, 113);
+        }
+
+        75% {
+            text-shadow: 6px 6px rgb(0, 255, 234),
+            -6px -6px yellow;
+            color: rgb(0, 60, 0);
+        }
+
+        100% {
+            text-shadow: 6px 6px blue,
+            -6px -6px red;
+            color: black;
+        }
+}
+
+#title_container:hover {
+color: greenyellow
+}
+
+#subtitle_text {
+animation-name: search_color;
+animation-duration: 3s;
+animation-iteration-count: infinite;
+font-size: 40px;
+font-family: "Tiktok Sans";
+font-weight: 100;
+}
+
+#search {
+text-align: center;
+width: 30vw;
+height: 2.3vh;
+font-family: 'Tiktok Sans';
+font-size: 20px;
+animation-name: search_color;
+animation-duration: 3s;
+animation-iteration-count: infinite;
+font-weight: 400;
+border: none;
+outline: none;
+background-color: transparent;
+}
+
+@keyframes search_color {
+    0% {color: red;}
+    33% {color: blue;}
+    66% {color: rgb(0, 255, 34)}
+    100% {color: red}
+}
+
+#searchBox {
+background-color: rgb(61, 61, 61);
+width: max-content;
+margin-left: auto;
+margin-right: auto;
+border-radius: 5px;
+}
+
+#searchexecuter {
+font-size: 20px;
+border: none;
+background-color: transparent;
+color: white;
+text-shadow: 1px 1px red, -1px -1px blue;
+}
+
+#settings {
+display: grid;
+justify-items: end;
+font-size: 30px;
+border-radius: 10px;
+outline: none;
+border: none;
+background-color: transparent;
+color:white;
+}
+
+#settings:hover {
+background-color: rgb(23, 23, 23);
+cursor: pointer;
+}
+
+#settingsMenu {
+z-index: 1000;
+width: clamp(200px, 15vw, 400px);
+box-sizing: border-box;
+height: auto;
+max-height: 80vh;
+overflow-y: auto;
+padding: 10px;
+color: rgb(255, 255, 255);
+background-color: rgb(37, 37, 37);
+border-radius: 10px;
+position: absolute;
+top: 50px;
+left: 5px;
+font-family: 'Tiktok Sans';
+display: none;
+}
+
+.bar {
+    width: 100%;
+    height: 2px;
+    margin: 8px 0;
+    background-color: rgb(104, 104, 104);
+}
+
+
+.configs {
+    display: grid;
+    place-items: center;
+    margin: 6px auto;
+    width: fit-content;
+    height: fit-content;
+    font-family: 'Audiowide'
+}
+
+button {
+    cursor: pointer
+}
+
+/*
+ *
+ # c*ustomization_tools {
+ position:fixed;
+ margin: 10px;
+ bottom:0;
+ right:0;
+ background-color: rgb(25, 25, 25);
+ border-radius: 30px;
+ border: none;
+ color: rgb(255, 255, 255);
+ width: fit-content;
+ height: fit-content;
+ font-size: 20px;
+ text-align: center;
+ }
+
+ #customization_tools:hover {
+ background-color: rgb(39, 39, 39);
+ }
+
+ */
